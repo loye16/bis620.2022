@@ -12,7 +12,26 @@ coverage](https://codecov.io/gh/loye16/bis620.2022/branch/main/graph/badge.svg)]
 [![lint](https://github.com/loye16/bis620.2022/actions/workflows/lint.yaml/badge.svg)](https://github.com/loye16/bis620.2022/actions/workflows/lint.yaml)
 <!-- badges: end -->
 
-The goal of bis620.2022 is to …
+Accelerometry is a tool used to measure human movement. The goal of
+bis620.2022 is to plot accelerometry data with respect to time or
+frequency.
+
+This package has two functions, `accel_plot` and `spectral_signature`
+(also called with `spec_sig`). The first, `accel_plot`, plots UKBiobank
+accelerometry data. It also assumes that the data has columns `time`,
+`X`, `Y`, and `Z` column along with either a `time` or `freq` column.
+The second, `spectral_signature`, gets the spectral signature of the
+accelerometry data calculated by taking the modulus of the Fourier
+coefficients of the signal. Users have the choice to take the log of the
+modulusand to unnormalized the inverse transform that is computed.
+
+The following are links to the coverage page and lint results.
+
+[Codecov
+Results](https://app.codecov.io/gh/loye16/bis620.2022?branch=main)
+
+[Lint
+Results](https://github.com/loye16/bis620.2022/actions/workflows/lint.yaml)
 
 ## Installation
 
@@ -24,29 +43,29 @@ You can install the development version of bis620.2022 from
 devtools::install_github("loye16/bis620.2022")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
+## Examples
 
 ``` r
-#library(bis620.2022)
-## basic example code
-```
+# packages
+library(bis620.2022)
+library(ggplot2)
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+#data
+data(ukb_accel)
+```
 
 ``` r
-#summary(cars)
+ukb_accel[1:1000, ] |>
+  accel_plot() +
+    ylab("Acceleration (in gravities)")
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
+<img src="man/figures/README-accel_plot-1.png" width="100%" />
 
-You can also embed plots, for example:
+``` r
+ukb_accel[1:1000, ] |>
+  spectral_signature(take_log = TRUE) |>
+  accel_plot()
+```
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+<img src="man/figures/README-spectral_signature-1.png" width="100%" />
