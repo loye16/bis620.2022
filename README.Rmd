@@ -35,7 +35,7 @@ gets the spectral signature of the accelerometry data calculated by taking the
 modulus of the Fourier coefficients of the signal. Users have the choice to take
 the log of the modulusand to unnormalized the inverse transform that is computed.
 
-The following are links to the coverage page and lint results.
+The following are links to the coverage page and lint results:
 
 [Codecov Results](https://app.codecov.io/gh/loye16/bis620.2022?branch=main)
 
@@ -62,12 +62,14 @@ library(ggplot2)
 data(ukb_accel)
 ```
 
+Example for `accel_plot`
 ```{r accel_plot}
 ukb_accel[1:1000, ] |>
   accel_plot() +
     ylab("Acceleration (in gravities)")
 ```
 
+Example for `spectral_signature`
 ```{r spectral_signature}
 ukb_accel[1:1000, ] |>
   spectral_signature(take_log = TRUE) |>

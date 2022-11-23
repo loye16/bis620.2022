@@ -25,7 +25,7 @@ accelerometry data calculated by taking the modulus of the Fourier
 coefficients of the signal. Users have the choice to take the log of the
 modulusand to unnormalized the inverse transform that is computed.
 
-The following are links to the coverage page and lint results.
+The following are links to the coverage page and lint results:
 
 [Codecov
 Results](https://app.codecov.io/gh/loye16/bis620.2022?branch=main)
@@ -54,6 +54,8 @@ library(ggplot2)
 data(ukb_accel)
 ```
 
+Example for `accel_plot`
+
 ``` r
 ukb_accel[1:1000, ] |>
   accel_plot() +
@@ -61,6 +63,8 @@ ukb_accel[1:1000, ] |>
 ```
 
 <img src="man/figures/README-accel_plot-1.png" width="100%" />
+
+Example for `spectral_signature`
 
 ``` r
 ukb_accel[1:1000, ] |>
